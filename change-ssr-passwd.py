@@ -47,6 +47,12 @@ def main():
             }
             patch_url = base_url + '/api/v1/user/admin'
             patch_response = session.patch(patch_url, json=admin_patch_payload)
+            if patch_response.status_code != 200:
+                if not args.quiet:
+                    message = patch_response.json().get('message')
+                    if not message:
+                        message = patch_response.text
+                    print('ERROR:', message)
         else:
             if not args.quiet:
                 print('ERROR: old password is not correct.')
