@@ -2,6 +2,9 @@
 import argparse
 import requests
 
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
 
 def parse_arguments():
     """Prepares the argument parser."""
